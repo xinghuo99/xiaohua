@@ -1,0 +1,26 @@
+{
+    "api_config": {
+        "api_key": "aaa",
+        "base_url": "bbb",
+        "model_name": "ccc"
+    },
+    "ai_config": {
+        "thinking_type": "disabled"
+    },
+    "execution_config": {
+        "max_visual_model_iterations": 80,
+        "default_max_iterations": 80
+    },
+    "screenshot_config": {
+        "optimize_for_speed": true,
+        "max_png": 1280,
+        "input_path": "imgs/screen.png",
+        "previous_image_path": "imgs/previous.png",
+        "output_path": "imgs/label"
+    },
+    "mouse_config": {
+        "move_duration": 0.1,
+        "failsafe": false,
+        "map_coordinates_to_1000": true
+    }
+}
