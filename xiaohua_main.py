@@ -240,7 +240,7 @@ class FloatHouse(QWidget):
         self.load_image()
 
     def load_image(self):
-        img_path = "house.png"
+        img_path = "icons/house.png"
         if os.path.exists(img_path):
             pixmap = QPixmap(img_path)
             if not pixmap.isNull():
@@ -299,7 +299,7 @@ class FloatFlower(QWidget):
         screen = QApplication.primaryScreen()
         ratio = screen.devicePixelRatio()
 
-        img_path = "小霞.png"
+        img_path = "icons/小霞.png"
         if os.path.exists(img_path):
             pixmap = QPixmap(img_path)
             if not pixmap.isNull():
@@ -359,7 +359,7 @@ class FloatDocer(QWidget):
 
 
     def load_image(self):
-        img_path = "docer.png"
+        img_path = "icons/docer.png"
         if os.path.exists(img_path):
             pixmap = QPixmap(img_path)
             if not pixmap.isNull():
@@ -418,7 +418,7 @@ class BotLabel(QWidget):
 
 
     def load_image(self):
-        img_path = "docer.png"
+        img_path = "icons/docer.png"
         if os.path.exists(img_path):
             pixmap = QPixmap(img_path)
             if not pixmap.isNull():
@@ -490,9 +490,9 @@ class FloatSendButton(QWidget):
         self.sendbutton.resize(30, 30)
         self.sendbutton.setFont(QFont('Calibri', 12))
         if app_background_color == "#393":
-            icon = QIcon('whitearrow.png')
+            icon = QIcon('icons/whitearrow.png')
         else:
-            icon = QIcon('newarrow.png')
+            icon = QIcon('icons/newarrow.png')
         
         self.sendbutton.setIcon(icon)
         self.sendbutton.setIconSize(QSize(20, 20))
@@ -572,7 +572,7 @@ class FloatPenDraw(QWidget):
         # 调整按钮大小
         self.pendrawbutton.resize(30, 30)
         
-        icon = QIcon('pen.png')
+        icon = QIcon('icons/pen.png')
         self.pendrawbutton.setIcon(icon)
         self.pendrawbutton.setIconSize(QSize(19, 19))
         
@@ -703,7 +703,7 @@ class FloatAddButton(QWidget):
         # 调整按钮大小
         self.addbutton.resize(30, 30)
         #self.addbutton.setFont(QFont('Calibri', 12))
-        #icon = QIcon('newat.png')
+        #icon = QIcon('icons/jia.png')
         #self.addbutton.setIcon(icon)
         #self.addbutton.setIconSize(QSize(20, 20))
 
@@ -767,7 +767,7 @@ class FloatQuoteButton(QWidget):
         # 调整按钮大小
         self.quotebutton.resize(30, 30)
         self.quotebutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newsharp.png')
+        icon = QIcon('icons/newsharp.png')
         self.quotebutton.setIcon(icon)
         self.quotebutton.setIconSize(QSize(20, 20))
         
@@ -834,7 +834,7 @@ class FloatAtButton(QWidget):
         # 调整按钮大小
         self.atbutton.resize(30, 30)
         self.atbutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newat.png')
+        icon = QIcon('icons/newat.png')
         self.atbutton.setIcon(icon)
         self.atbutton.setIconSize(QSize(20, 20))
 
@@ -943,7 +943,7 @@ class FloatComboBox(QWidget):
                 min-width: 150px;
             }}
             QComboBox::down-arrow {{
-                image: url(down.png);
+                image: url(icons/down.png);
                 width: 12px;
                 height: 12px;
             }}
@@ -1097,7 +1097,7 @@ class FloatInputWidget(QWidget):
         self.addbutton.setFixedHeight(30)
         self.addbutton.setFixedWidth(30)
         #self.addbutton.setFont(QFont('Calibri', 12))
-        #icon = QIcon('newat.png')
+        #icon = QIcon('icons/newat.png')
         #self.addbutton.setIcon(icon)
         #self.addbutton.setIconSize(QSize(20, 20))
          
@@ -1132,7 +1132,7 @@ class FloatInputWidget(QWidget):
         self.atbutton.setFixedHeight(30)
         self.atbutton.setFixedWidth(30)
         self.atbutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newat.png')
+        icon = QIcon('icons/newat.png')
         self.atbutton.setIcon(icon)
         self.atbutton.setIconSize(QSize(20, 20))
         
@@ -1167,7 +1167,7 @@ class FloatInputWidget(QWidget):
         self.quotebutton.setFixedHeight(30)
         self.quotebutton.setFixedWidth(30)
         self.quotebutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newsharp.png')
+        icon = QIcon('icons/newsharp.png')
         self.quotebutton.setIcon(icon)
         self.quotebutton.setIconSize(QSize(20, 20))
         
@@ -1202,7 +1202,7 @@ class FloatInputWidget(QWidget):
         self.voicechatbutton.setFixedHeight(30)
         self.voicechatbutton.setFixedWidth(30)
         #self.voicechatbutton.setFont(QFont('Calibri', 12)) 不生效
-        icon = QIcon('voice.png')
+        icon = QIcon('icons/voice.png')
         self.voicechatbutton.setIcon(icon)
         self.voicechatbutton.setIconSize(QSize(20, 20))
         
@@ -1237,7 +1237,7 @@ class FloatInputWidget(QWidget):
         self.pendrawbutton.setFixedHeight(30)
         self.pendrawbutton.setFixedWidth(30)
 
-        icon = QIcon('pen.png')
+        icon = QIcon('icons/pen.png')
         self.pendrawbutton.setIcon(icon)
         self.pendrawbutton.setIconSize(QSize(19, 19))
         
@@ -1279,9 +1279,9 @@ class FloatInputWidget(QWidget):
         self.sendbutton.setFixedWidth(30)
         self.sendbutton.setFont(QFont('Calibri', 12))
         if app_background_color == "#393":
-            icon = QIcon('whitearrow.png')
+            icon = QIcon('icons/whitearrow.png')
         else:
-            icon = QIcon('newarrow.png')
+            icon = QIcon('icons/newarrow.png')
         
         self.sendbutton.setIcon(icon)
         self.sendbutton.setIconSize(QSize(20, 20))
@@ -1636,6 +1636,7 @@ class FloatWorkBenchWidget(QWidget):
         # 启用HTML支持以显示markdown
         self.display_text_edit.setAcceptRichText(True)
         self.display_text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.display_text_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         # 初始化时设置保存的内容
         if self.display_text:
             self.set_display_content(self.display_text)
@@ -1742,6 +1743,8 @@ class FloatWorkBenchWidget(QWidget):
                 padding: 10px 20px;
                 font-size: 20px;
                 font-weight: bold;
+                text-align: left; 
+                padding-left: 6px;
             }}
             QPushButton:hover {{
                 background-color: #222;
@@ -1755,10 +1758,11 @@ class FloatWorkBenchWidget(QWidget):
         self.addbutton.resize(30, 30)
         self.addbutton.setFixedHeight(30)
         self.addbutton.setFixedWidth(30)
-        #self.addbutton.setFont(QFont('Calibri', 12))
+        self.addbutton.setFont(QFont('Calibri', 12))
         #icon = QIcon('newat.png')
-        #self.addbutton.setIcon(icon)
-        #self.addbutton.setIconSize(QSize(20, 20))
+        icon = QIcon('icons/jia.png')
+        self.addbutton.setIcon(icon)
+        self.addbutton.setIconSize(QSize(20, 20))
          
         # 连接按钮点击事件
         self.addbutton.clicked.connect(self.on_add_button_clicked)
@@ -1791,7 +1795,8 @@ class FloatWorkBenchWidget(QWidget):
         self.atbutton.setFixedHeight(30)
         self.atbutton.setFixedWidth(30)
         self.atbutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newat.png')
+       #icon = QIcon('icons/newat.png')
+        icon = QIcon('icons/jingat.png')
         self.atbutton.setIcon(icon)
         self.atbutton.setIconSize(QSize(20, 20))
         
@@ -1826,7 +1831,8 @@ class FloatWorkBenchWidget(QWidget):
         self.quotebutton.setFixedHeight(30)
         self.quotebutton.setFixedWidth(30)
         self.quotebutton.setFont(QFont('Calibri', 12))
-        icon = QIcon('newsharp.png')
+        #icon = QIcon('newsharp.png')
+        icon = QIcon('icons/jing.png')
         self.quotebutton.setIcon(icon)
         self.quotebutton.setIconSize(QSize(20, 20))
         
@@ -1861,7 +1867,7 @@ class FloatWorkBenchWidget(QWidget):
         self.voicechatbutton.setFixedHeight(30)
         self.voicechatbutton.setFixedWidth(30)
         #self.voicechatbutton.setFont(QFont('Calibri', 12)) 不生效
-        icon = QIcon('voice.png')
+        icon = QIcon('icons/voice.png')
         self.voicechatbutton.setIcon(icon)
         self.voicechatbutton.setIconSize(QSize(20, 20))
         
@@ -1896,7 +1902,7 @@ class FloatWorkBenchWidget(QWidget):
         self.pendrawbutton.setFixedHeight(30)
         self.pendrawbutton.setFixedWidth(30)
 
-        icon = QIcon('pen.png')
+        icon = QIcon('icons/pen.png')
         self.pendrawbutton.setIcon(icon)
         self.pendrawbutton.setIconSize(QSize(19, 19))
         
@@ -1938,10 +1944,12 @@ class FloatWorkBenchWidget(QWidget):
         self.sendbutton.setFixedWidth(30)
         self.sendbutton.setFont(QFont('Calibri', 12))
         if app_background_color == "#393":
-            icon = QIcon('whitearrow.png')
+            icon = QIcon('icons/whitearrow.png')
         else:
-            icon = QIcon('newarrow.png')
+            icon = QIcon('icons/newarrow.png')
         
+        icon = QIcon('icons/whitearrow.png')
+
         self.sendbutton.setIcon(icon)
         self.sendbutton.setIconSize(QSize(20, 20))
         
@@ -2115,7 +2123,7 @@ class FloatWorkBenchWidget(QWidget):
             pixmap = QPixmap(role_img_path)
             if not pixmap.isNull():
                 small_pixmap = pixmap.scaled(
-                    int(50 * ratio), int(50 * ratio), # self.get_scaled_font_size(80), self.get_scaled_font_size(80),
+                    int(60 * ratio), int(60 * ratio), # self.get_scaled_font_size(80), self.get_scaled_font_size(80),
                     #80, 80,
                     Qt.KeepAspectRatio, Qt.SmoothTransformation
                 )
@@ -2258,6 +2266,9 @@ class FloatWorkBenchWidget(QWidget):
         self.workbench_text = response_text
         self.waiting_label.hide()
         self.set_display_content(response_text)
+
+        maximum = self.workbench_text_edit.verticalScrollBar().maximum()
+        self.workbench_text_edit.verticalScrollBar().setValue(maximum)
         # 移动光标到末尾并插入文本
         cursor = self.workbench_text_edit.textCursor()
         cursor.movePosition(QTextCursor.End)       
@@ -2901,7 +2912,7 @@ class FloatXiaoHua(QWidget):
         ratio = screen.devicePixelRatio()
         #print(f"screen ratio: {ratio:.2f}")
     
-        img_path = "小华.png"
+        img_path = "icons/小华.png"
         if os.path.exists(img_path):
             pixmap = QPixmap(img_path)
             if not pixmap.isNull():
