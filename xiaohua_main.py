@@ -2263,24 +2263,32 @@ class FloatWorkBenchWidget(QWidget):
     
     def on_response_received(self, response_text):
         # 收到响应时显示
-        self.workbench_text = response_text
+        self.display_text = response_text
         self.waiting_label.hide()
         self.set_display_content(response_text)
 
-        maximum = self.workbench_text_edit.verticalScrollBar().maximum()
-        self.workbench_text_edit.verticalScrollBar().setValue(maximum)
         # 移动光标到末尾并插入文本
-        cursor = self.workbench_text_edit.textCursor()
+        cursor = self.display_text_edit.textCursor()
         cursor.movePosition(QTextCursor.End)       
         # 确保光标可见（滚动到底部）
-        self.workbench_text_edit.setTextCursor(cursor)
-        self.workbench_text_edit.ensureCursorVisible()
-        self.workbench_text_edit.show()
+        self.display_text_edit.setTextCursor(cursor)
+        self.display_text_edit.ensureCursorVisible()
+        self.display_text_edit.show()
+        
+        #maximum = self.display_text_edit.verticalScrollBar().maximum()
+        #self.display_text_edit.verticalScrollBar().setValue(maximum)
+
+        if "请验收" in response_text:
+            QTimer.singleShot(0, self.scroll_vertical_to_bottom)
         # 通知父窗口等待状态结束
         if self.parent() and hasattr(self.parent(), 'set_waiting_state'):
             self.parent().set_waiting_state(False)
             # 将内容保存到父窗口
             self.parent().saved_display_content = response_text
+    def scroll_vertical_to_bottom(self):
+        time.sleep(1)
+        maximum = self.display_text_edit.verticalScrollBar().maximum()
+        self.display_text_edit.verticalScrollBar().setValue(maximum)
 
     def mousePressEvent(self, event):
         # 检查是否点击了窗口顶部边缘用于调整高度
@@ -3027,7 +3035,7 @@ class FloatXiaoHua(QWidget):
     def leaveEvent(self, event):
         # 只有在非隐藏状态下才启动离开检查
         if not self.is_hidden:
-            self.leave_check_timer.start(50)
+            self.leave_check_timer.start(100)
 
     def check_mouse_leave(self):
         # 检查鼠标是否离开所有相关组件
@@ -3096,7 +3104,7 @@ class FloatXiaoHua(QWidget):
             self.restore_from_edge()
 
     def on_input_hover_leave(self):
-        self.leave_check_timer.start(50)
+        self.leave_check_timer.start(100)
 
     def update_display_position(self):
         """更新显示框位置，当显示框高度改变时调用"""
