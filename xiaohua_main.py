@@ -19,6 +19,9 @@ from PyQt5.QtGui import QFontMetrics, QPainter
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtGui import QColor, QFont
 
+import base64
+from img_base64 import *
+
 # 使用环境变量抑制PyQt5的警告
 os.environ['QT_LOGGING_RULES'] = '*.warning=false;*.critical=false'
 
@@ -298,22 +301,25 @@ class FloatFlower(QWidget):
     def load_image(self):
         screen = QApplication.primaryScreen()
         ratio = screen.devicePixelRatio()
+        
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(XIA_PNG))
+        
+        #img_path = "icons/小霞.png"
+        #if os.path.exists(img_path):
+            #pixmap = QPixmap(img_path)
+        if not pixmap.isNull():
+            self.original_pixmap = pixmap
+            self.small_pixmap = self.original_pixmap.scaled(
+                #self.width, self.height,
+                int(self.width * ratio), int(self.height * ratio),
+                Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+            self.small_pixmap.setDevicePixelRatio(ratio)
+            self.label.setPixmap(self.small_pixmap)
 
-        img_path = "icons/小霞.png"
-        if os.path.exists(img_path):
-            pixmap = QPixmap(img_path)
-            if not pixmap.isNull():
-                self.original_pixmap = pixmap
-                self.small_pixmap = self.original_pixmap.scaled(
-                    #self.width, self.height,
-                    int(self.width * ratio), int(self.height * ratio),
-                    Qt.KeepAspectRatio, Qt.SmoothTransformation
-                )
-                self.small_pixmap.setDevicePixelRatio(ratio)
-                self.label.setPixmap(self.small_pixmap)
-
-                self.label.setGeometry(0, 0, self.width, self.height)
-                return
+            self.label.setGeometry(0, 0, self.width, self.height)
+            return
 
 
     # 实现窗口拖动功能
@@ -1531,32 +1537,37 @@ class FloatWorkBenchWidget(QWidget):
         self.docer = QLabel(self)
         self.docer.setAlignment(Qt.AlignCenter)
         #self.set_role_label(self.docer, "docer", "小华.png")
-        self.set_role_label(self.docer, "docer", "icons/docer1.png")
+        #self.set_role_label(self.docer, "docer", "icons/docer1.png")
+        self.set_role_label_img(self.docer, "docer", DOCER1_PNG)
         self.docer.mousePressEvent = self.docer_clicked
         
         self.configer_enable = False
         self.configer = QLabel(self)
         self.configer.setAlignment(Qt.AlignCenter)
-        self.set_role_label(self.configer, "configer", "icons/configer2.png")
+        #self.set_role_label(self.configer, "configer", "icons/configer2.png")
+        self.set_role_label_img(self.configer, "configer", CONFIGER2_PNG)
         self.configer.mousePressEvent = self.configer_clicked
 
         self.worker_enable = False
         self.worker = QLabel(self)
         self.worker.setAlignment(Qt.AlignCenter)
-        self.set_role_label(self.worker, "worker", "icons/worker2.png")
+        #self.set_role_label(self.worker, "worker", "icons/worker2.png")
+        self.set_role_label_img(self.worker, "worker", WORKER2_PNG)
         self.worker.mousePressEvent = self.worker_clicked
 
 
         self.coder_enable = False
         self.coder = QLabel(self)
         self.coder.setAlignment(Qt.AlignCenter)
-        self.set_role_label(self.coder, "coder", "icons/coder2.png")
+        #self.set_role_label(self.coder, "coder", "icons/coder2.png")
+        self.set_role_label_img(self.coder, "coder", CODER2_PNG)
         self.coder.mousePressEvent = self.coder_clicked
 
         self.xiaoxia_enable = False
         self.xiaoxia = QLabel(self)
         self.xiaoxia.setAlignment(Qt.AlignCenter)
-        self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+        #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+        self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA2_PNG)
         self.xiaoxia.mousePressEvent = self.xiaoxia_clicked
 
         bot_layout = QHBoxLayout()
@@ -1760,7 +1771,12 @@ class FloatWorkBenchWidget(QWidget):
         self.addbutton.setFixedWidth(30)
         self.addbutton.setFont(QFont('Calibri', 12))
         #icon = QIcon('newat.png')
-        icon = QIcon('icons/jia.png')
+
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(JIA_PNG))
+        icon = QIcon(pixmap)
+
+        #icon = QIcon('icons/jia.png')
         self.addbutton.setIcon(icon)
         self.addbutton.setIconSize(QSize(20, 20))
          
@@ -1796,7 +1812,12 @@ class FloatWorkBenchWidget(QWidget):
         self.atbutton.setFixedWidth(30)
         self.atbutton.setFont(QFont('Calibri', 12))
        #icon = QIcon('icons/newat.png')
-        icon = QIcon('icons/jingat.png')
+
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(JINGAT_PNG))
+        icon = QIcon(pixmap)
+
+        #icon = QIcon('icons/jingat.png')
         self.atbutton.setIcon(icon)
         self.atbutton.setIconSize(QSize(20, 20))
         
@@ -1832,7 +1853,12 @@ class FloatWorkBenchWidget(QWidget):
         self.quotebutton.setFixedWidth(30)
         self.quotebutton.setFont(QFont('Calibri', 12))
         #icon = QIcon('newsharp.png')
-        icon = QIcon('icons/jing.png')
+
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(JING_PNG))
+        icon = QIcon(pixmap)
+        
+        #icon = QIcon('icons/jing.png')
         self.quotebutton.setIcon(icon)
         self.quotebutton.setIconSize(QSize(20, 20))
         
@@ -1867,7 +1893,12 @@ class FloatWorkBenchWidget(QWidget):
         self.voicechatbutton.setFixedHeight(30)
         self.voicechatbutton.setFixedWidth(30)
         #self.voicechatbutton.setFont(QFont('Calibri', 12)) 不生效
-        icon = QIcon('icons/voice.png')
+
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(VOICE_PNG))
+        icon = QIcon(pixmap)
+
+        #icon = QIcon('icons/voice.png')
         self.voicechatbutton.setIcon(icon)
         self.voicechatbutton.setIconSize(QSize(20, 20))
         
@@ -1902,7 +1933,11 @@ class FloatWorkBenchWidget(QWidget):
         self.pendrawbutton.setFixedHeight(30)
         self.pendrawbutton.setFixedWidth(30)
 
-        icon = QIcon('icons/pen.png')
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(PEN_PNG))
+        icon = QIcon(pixmap)
+
+        #icon = QIcon('icons/pen.png')
         self.pendrawbutton.setIcon(icon)
         self.pendrawbutton.setIconSize(QSize(19, 19))
         
@@ -1943,12 +1978,16 @@ class FloatWorkBenchWidget(QWidget):
         self.sendbutton.setFixedHeight(30)
         self.sendbutton.setFixedWidth(30)
         self.sendbutton.setFont(QFont('Calibri', 12))
-        if app_background_color == "#393":
-            icon = QIcon('icons/whitearrow.png')
-        else:
-            icon = QIcon('icons/newarrow.png')
+        #if app_background_color == "#393":
+        #    icon = QIcon('icons/whitearrow.png')
+        #else:
+        #    icon = QIcon('icons/newarrow.png')
         
-        icon = QIcon('icons/whitearrow.png')
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(WHITEARROW_PNG))
+        icon = QIcon(pixmap)
+
+        #icon = QIcon('icons/whitearrow.png')
 
         self.sendbutton.setIcon(icon)
         self.sendbutton.setIconSize(QSize(20, 20))
@@ -2026,11 +2065,17 @@ class FloatWorkBenchWidget(QWidget):
                 self.coder_enable = False
                 self.xiaoxia_enable = False
                 
-                self.set_role_label(self.docer, "docer", "icons/docer1.png")
-                self.set_role_label(self.configer, "configer", "icons/configer2.png")
-                self.set_role_label(self.worker, "worker", "icons/worker2.png")
-                self.set_role_label(self.coder, "coder", "icons/coder2.png")
-                self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+                #self.set_role_label(self.docer, "docer", "icons/docer1.png")
+                #self.set_role_label(self.configer, "configer", "icons/configer2.png")
+                #self.set_role_label(self.worker, "worker", "icons/worker2.png")
+                #self.set_role_label(self.coder, "coder", "icons/coder2.png")
+                #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+
+                self.set_role_label_img(self.docer, "docer", DOCER1_PNG)
+                self.set_role_label_img(self.configer, "configer", CONFIGER2_PNG)
+                self.set_role_label_img(self.worker, "worker", WORKER2_PNG)
+                self.set_role_label_img(self.coder, "coder", CODER2_PNG)
+                self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA2_PNG)
             
             print('docer clicked!')
             self.set_display_content('我是docer。')
@@ -2045,11 +2090,17 @@ class FloatWorkBenchWidget(QWidget):
                 self.coder_enable = False
                 self.xiaoxia_enable = False
                 
-                self.set_role_label(self.docer, "docer", "icons/docer2.png")
-                self.set_role_label(self.configer, "configer", "icons/configer1.png")
-                self.set_role_label(self.worker, "worker", "icons/worker2.png")
-                self.set_role_label(self.coder, "coder", "icons/coder2.png")
-                self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+                #self.set_role_label(self.docer, "docer", "icons/docer2.png")
+                #self.set_role_label(self.configer, "configer", "icons/configer1.png")
+                #self.set_role_label(self.worker, "worker", "icons/worker2.png")
+                #self.set_role_label(self.coder, "coder", "icons/coder2.png")
+                #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+
+                self.set_role_label_img(self.docer, "docer", DOCER2_PNG)
+                self.set_role_label_img(self.configer, "configer", CONFIGER1_PNG)
+                self.set_role_label_img(self.worker, "worker", WORKER2_PNG)
+                self.set_role_label_img(self.coder, "coder", CODER2_PNG)
+                self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA2_PNG)
 
             print('configer clicked!')
             self.set_display_content('我是configer。')
@@ -2064,11 +2115,17 @@ class FloatWorkBenchWidget(QWidget):
                 self.coder_enable = False
                 self.xiaoxia_enable = False
                 
-                self.set_role_label(self.docer, "docer", "icons/docer2.png")
-                self.set_role_label(self.configer, "configer", "icons/configer2.png")
-                self.set_role_label(self.worker, "worker", "icons/worker1.png")
-                self.set_role_label(self.coder, "coder", "icons/coder2.png")
-                self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+                #self.set_role_label(self.docer, "docer", "icons/docer2.png")
+                #self.set_role_label(self.configer, "configer", "icons/configer2.png")
+                #self.set_role_label(self.worker, "worker", "icons/worker1.png")
+                #self.set_role_label(self.coder, "coder", "icons/coder2.png")
+                #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+
+                self.set_role_label_img(self.docer, "docer", DOCER2_PNG)
+                self.set_role_label_img(self.configer, "configer", CONFIGER2_PNG)
+                self.set_role_label_img(self.worker, "worker", WORKER1_PNG)
+                self.set_role_label_img(self.coder, "coder", CODER2_PNG)
+                self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA2_PNG)
             
             print('worker clicked!')
             self.set_display_content('我是worker。')
@@ -2083,11 +2140,17 @@ class FloatWorkBenchWidget(QWidget):
                 self.coder_enable = True
                 self.xiaoxia_enable = False
                 
-                self.set_role_label(self.docer, "docer", "icons/docer2.png")
-                self.set_role_label(self.configer, "configer", "icons/configer2.png")
-                self.set_role_label(self.worker, "worker", "icons/worker2.png")
-                self.set_role_label(self.coder, "coder", "icons/coder1.png")
-                self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+                #self.set_role_label(self.docer, "docer", "icons/docer2.png")
+                #self.set_role_label(self.configer, "configer", "icons/configer2.png")
+                #self.set_role_label(self.worker, "worker", "icons/worker2.png")
+                #self.set_role_label(self.coder, "coder", "icons/coder1.png")
+                #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia2.png")
+
+                self.set_role_label_img(self.docer, "docer", DOCER2_PNG)
+                self.set_role_label_img(self.configer, "configer", CONFIGER2_PNG)
+                self.set_role_label_img(self.worker, "worker", WORKER2_PNG)
+                self.set_role_label_img(self.coder, "coder", CODER1_PNG)
+                self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA2_PNG)
             
             print('coder clicked!')
             self.set_display_content('我是coder。')
@@ -2102,15 +2165,43 @@ class FloatWorkBenchWidget(QWidget):
                 self.coder_enable = False
                 self.xiaoxia_enable = True
                 
-                self.set_role_label(self.docer, "docer", "icons/docer2.png")
-                self.set_role_label(self.configer, "configer", "icons/configer2.png")
-                self.set_role_label(self.worker, "worker", "icons/worker2.png")
-                self.set_role_label(self.coder, "coder", "icons/coder2.png")
-                self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia1.png")
+                #self.set_role_label(self.docer, "docer", "icons/docer2.png")
+                #self.set_role_label(self.configer, "configer", "icons/configer2.png")
+                #self.set_role_label(self.worker, "worker", "icons/worker2.png")
+                #self.set_role_label(self.coder, "coder", "icons/coder2.png")
+                #self.set_role_label(self.xiaoxia, "xiaoxia", "icons/xiaoxia1.png")
+
+                self.set_role_label_img(self.docer, "docer", DOCER2_PNG)
+                self.set_role_label_img(self.configer, "configer", CONFIGER2_PNG)
+                self.set_role_label_img(self.worker, "worker", WORKER2_PNG)
+                self.set_role_label_img(self.coder, "coder", CODER2_PNG)
+                self.set_role_label_img(self.xiaoxia, "xiaoxia", XIAOXIA1_PNG)
             
             print('xiaoxia clicked!')
             self.set_display_content('我是小霞。')
             QMessageBox.information(self, '友情提示', '我是小霞。')
+
+    def set_role_label_img(self, role_label, role_name, img_name):
+        role_label.setText(role_name)
+        screen = QApplication.primaryScreen()
+        ratio = screen.devicePixelRatio()
+        #print("screen ratio:", ratio)
+        #print(f"screen ratio: {ratio:.2f}")
+
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(img_name))
+
+        #if os.path.exists(role_img_path):
+        #    pixmap = QPixmap(role_img_path)
+        if not pixmap.isNull():
+            small_pixmap = pixmap.scaled(
+                int(60 * ratio), int(60 * ratio), # self.get_scaled_font_size(80), self.get_scaled_font_size(80),
+                #80, 80,
+                Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+            small_pixmap.setDevicePixelRatio(ratio)
+            role_label.setPixmap(small_pixmap)
+
 
     def set_role_label(self, role_label, role_name, role_img_path):
         role_label.setText(role_name)
@@ -2919,21 +3010,23 @@ class FloatXiaoHua(QWidget):
         screen = QApplication.primaryScreen()
         ratio = screen.devicePixelRatio()
         #print(f"screen ratio: {ratio:.2f}")
-    
-        img_path = "icons/小华.png"
-        if os.path.exists(img_path):
-            pixmap = QPixmap(img_path)
-            if not pixmap.isNull():
-                self.original_pixmap = pixmap
-                self.small_pixmap = self.original_pixmap.scaled(
-                    int(self.small_size * ratio), int(self.small_size * ratio),
-                    #self.small_size, self.small_size,
-                    Qt.KeepAspectRatio, Qt.SmoothTransformation
-                )
-                self.small_pixmap.setDevicePixelRatio(ratio)
-                self.label.setPixmap(self.small_pixmap)
-                self.label.setGeometry(0, 0, self.small_size, self.small_size)
-                return
+        pixmap = QPixmap()
+        pixmap.loadFromData(base64.b64decode(HUA_PNG))
+
+        #img_path = "icons/小华.png"
+        #if os.path.exists(img_path):
+        #pixmap = QPixmap(img_path)
+        if not pixmap.isNull():
+            self.original_pixmap = pixmap
+            self.small_pixmap = self.original_pixmap.scaled(
+                int(self.small_size * ratio), int(self.small_size * ratio),
+                #self.small_size, self.small_size,
+                Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+            self.small_pixmap.setDevicePixelRatio(ratio)
+            self.label.setPixmap(self.small_pixmap)
+            self.label.setGeometry(0, 0, self.small_size, self.small_size)
+            return
         self.create_default_circle()
 
     def create_default_circle(self):
